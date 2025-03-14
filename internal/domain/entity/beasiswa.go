@@ -22,6 +22,21 @@ type Beasiswa struct {
 	CreatedAt           time.Time `gorm:"type:timestamp;autoCreateTime"`
 }
 
+func (p Beasiswa) ParseToDTO() dto.ResponseCreateBeasiswa {
+	return dto.ResponseCreateBeasiswa{
+		Title:               p.Title,
+		EducationLevel:      p.EducationLevel,
+		EducationLevel2:     p.EducationLevel2,
+		BeasiswaDescription: p.BeasiswaDescription,
+		Organizer:           p.Organizer,
+		Type:                p.Type,
+		OpenReg:             p.OpenReg,
+		CloseReg:            p.CloseReg,
+		PhotoURL:            p.PhotoURL,
+		BeasiswaURL:         p.BeasiswaURL,
+	}
+}
+
 func (p Beasiswa) ParseToDTOGet() dto.ResponseGetBeasiswa {
 	return dto.ResponseGetBeasiswa{
 		ID:                  p.ID,
