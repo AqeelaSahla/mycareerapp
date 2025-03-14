@@ -7,7 +7,6 @@ import (
 	"mycareerapp/internal/domain/entity"
 	"mycareerapp/internal/infra/jwt"
 	"mycareerapp/pkg/util"
-	"time"
 
 	"github.com/google/uuid"
 	"golang.org/x/crypto/bcrypt"
@@ -41,11 +40,6 @@ func (u *UserUsecase) Register(register dto.Register) error {
 		return err
 	}
 
-	birthday, err := time.Parse("02/01/2006", register.Birthday)
-	if err != nil {
-		return err
-	}
-
 	user := entity.User{
 		ID:                        uuid.New(),
 		Name:                      register.Name,
@@ -53,7 +47,7 @@ func (u *UserUsecase) Register(register dto.Register) error {
 		Password:                  string(hashedPassword),
 		PhotoProfile:              register.PhotoProfile,
 		Gender:                    gender,
-		Birthday:                  birthday,
+		Birthday:                  register.Birthday,
 		EducationalLevel:          register.EducationalLevel,
 		Institution:               register.Institution,
 		Departmen:                 register.Departmen,

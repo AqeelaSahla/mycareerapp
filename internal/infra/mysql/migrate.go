@@ -12,6 +12,7 @@ func Migrate(db *gorm.DB) error {
 		entity.Article{},
 		entity.User{},
 		entity.Jobpulse{},
+		entity.Beasiswa{},
 	); err != nil {
 		return err
 	}

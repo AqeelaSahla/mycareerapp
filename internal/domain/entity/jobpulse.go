@@ -12,7 +12,7 @@ type Jobpulse struct {
 	Title           string    `gorm:"type:varchar(100);not null"`
 	Location        string    `gorm:"type:varchar(100);not null"`
 	WorkDescription string    `gorm:"type:text"`
-	MinimumExp      string    `gorm:"text"`
+	MinimumExp      string    `gorm:"type:text"`
 	Salary          string    `gorm:"type:text;not null"`
 	WorkingDays     string    `gorm:"type:text;not null"`
 	WorkingHours    string    `gorm:"type:text;not null"`
