@@ -5,6 +5,9 @@ import (
 	articlehandler "mycareerapp/internal/app/article/interface/rest"
 	articlerepository "mycareerapp/internal/app/article/repository"
 	articleusecase "mycareerapp/internal/app/article/usecase"
+	beasiswahandler "mycareerapp/internal/app/beasiswa/interface/rest"
+	beasiswarepository "mycareerapp/internal/app/beasiswa/repository"
+	beasiswausecase "mycareerapp/internal/app/beasiswa/usecase"
 	jobpulsehandler "mycareerapp/internal/app/jobpulse/interface/rest"
 	jobpulserepository "mycareerapp/internal/app/jobpulse/repository"
 	jobpulseusecase "mycareerapp/internal/app/jobpulse/usecase"
@@ -62,6 +65,10 @@ func Start() error {
 	jobpulseRepository := jobpulserepository.NewJobpulseMySQL(database)
 	jobpulseUseCase := jobpulseusecase.NewJobpulseUsecase(jobpulseRepository)
 	jobpulsehandler.NewJobpulseHandler(v1, val, jobpulseUseCase, middleware)
+
+	beasiswaRepository := beasiswarepository.NewBeasiswaMySQL(database)
+	beasiswaUseCase := beasiswausecase.NewBeasiswaUsecase(beasiswaRepository)
+	beasiswahandler.NewBeasiswaHandler(v1, val, beasiswaUseCase, middleware)
 
 	return app.Listen(fmt.Sprintf(":%d", config.AppPort))
 }
